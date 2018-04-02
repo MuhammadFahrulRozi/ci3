@@ -33,9 +33,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('madura');
 	}
 
-
 	public function home()
 	{
 		$this->load->view('home');
 	}
+
+	public function tugas()
+	{
+		$this->load->model('datapersonal');
+		$data = $this->datapersonal->getData();
+		$this->load->view('web_fahrul',$data, FALSE);
+	}
+
 }
