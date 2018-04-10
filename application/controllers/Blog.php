@@ -20,7 +20,9 @@ class Blog extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$this->load->view('welcome_message');
+		$data['blog'] = $this->blog_data->get_data()->result();
+		$this->load->view('create',$data);
 	}
 
 	public function fahrul()
@@ -38,5 +40,53 @@ class Blog extends CI_Controller {
 		$this->load->view('anime');
 	}
 
+	public function fahrul3()
+	{
+		$this->load->view('create');
+	}
 
+	function __construct(){
+		parent::__construct();
+		$this->load->model('blog_data');
+		$this->load->helper('url');	
+	}
+
+	function tambah(){
+		$this->load->view('create');
+	}
+
+	function tambah_aksi(){
+		$this->load->helper('form');
+		$config['upload_path']   = 'assets/images/Upload';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$this->load->library('upload', $config);
+
+			if ( ! $this->upload->do_upload('userfile'))
+			{
+				$error = array('error' => $this->upload->display_errors());
+				print_r($error);
+			}
+			else
+			{
+				$data = array('upload_data' => $this->upload->data());
+			
+		$judul   = $this->input->post('judul');
+		$tanggal = $this->input->post('tanggal');
+		$author  = $this->input->post('author');
+		$konten  = $this->input->post('konten');
+		$gambar  = $this->upload->data('file_name');
+		
+		$data = array(
+				'judul' => $this->input->post('judul'),
+				'tanggal' => $this->input->post('tanggal'),
+				'author' => $this->input->post('author'),
+				'konten' => $this->input->post('konten'),
+				'gambar' => $gambar
+		);
+		echo print_r($data);
+		$this->blog_data->input_data($data,'blog');
+		redirect('Blog');
+		}
+	}
 }
+?>
