@@ -41,11 +41,19 @@
   <br>
   <div class="container">
       <div class="jumbotron">
-        <h1>Mobile Legends</h1>
-        <img src="<?php echo base_url('assets/images/ml.jpg')?>" alt="" width="75%" align="center">      
-        <p><br>Mobile Legends adalah sebuah permainan piranti bergerak berjenis MOBA yang dikembangkan dan diterbitkan oleh Moonton.Mobile Legends: Bang Bang adalah sebuah permainan MOBA yang dirancang untuk ponsel. Kedua tim lawan berjuang untuk mencapai dan menghancurkan basis musuh sambil mempertahankan basis mereka sendiri untuk mengendalikan jalan setapak, tiga "jalur" yang dikenal sebagai "top", "middle" dan "bottom", yang menghubungkan basis-basis.
-Di masing-masing tim, ada lima pemain yang masing-masing mengendalikan avatar, yang dikenal sebagai "hero", dari perangkat mereka sendiri. Karakter terkontrol komputer yang lebih lemah, yang disebut "minions", bertelur di basis tim dan mengikuti tiga jalur ke basis tim lawan, melawan musuh dan menara.</p>
-     <button type="button" class="btn"><a href="<?php echo base_url('Welcome/tugas')?>"><span>Back</span></button> 
+        <?php foreach ($blog as $u) {?>
+        <h1><?php echo $u->judul?></h1>
+        <img src="<?php echo base_url().'assets/images/'. $u->gambar?>" alt="" width="75%" align="center">      
+        <p><br><?php echo $u->konten?></p>
+        <p align="right">
+     <button type="button" class="btn"><a href="<?php echo base_url('Welcome/tugas')?>"><span>Back</span></button></p>
+     <p align="right">
+      <?php echo anchor('Blog/edit/'.$u->id, 'Update'); ?>
+     </p>
+     <p align="right">
+     <?php echo anchor('Blog/hapus/'.$u->id,'Hapus'); ?> 
+     </p>
+     <?php }?> 
       </div>   
   </div>
 </body>

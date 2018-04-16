@@ -27,7 +27,8 @@ class Blog extends CI_Controller {
 
 	public function fahrul()
 	{
-		$this->load->view('ml');
+		$data['blog'] = $this->blog_data->get_data()->result();
+		$this->load->view('ml', $data);
 	}
 
 	public function fahrul1()
@@ -49,6 +50,7 @@ class Blog extends CI_Controller {
 		parent::__construct();
 		$this->load->model('blog_data');
 		$this->load->helper('url');	
+		$this->load->library('form_validation');
 	}
 
 	function tambah(){
@@ -86,6 +88,56 @@ class Blog extends CI_Controller {
 		echo print_r($data);
 		$this->blog_data->input_data($data,'blog');
 		redirect('Blog');
+		}
+	}
+
+	function edit($id){
+	$where = array('id' => $id);
+	$data['blog'] = $this->blog_data->edit_data($where,'blog')->result();
+	$this->load->view('edit',$data);
+	}
+
+	function update(){
+	$id = $this->input->post('id');
+	$judul = $this->input->post('judul');
+	$tanggal = $this->input->post('tanggal');
+	$author = $this->input->post('author');
+	$konten = $this->input->post('konten');
+	// $gambar = $this->input->post('gambar');
+
+	$data = array(
+		'judul' => $judul,
+		'tanggal' => $tanggal,
+		'author' => $author,
+		'konten' => $konten
+		// 'gambar' => $gambar
+	);
+
+	$where = array(
+		'id' => $id
+	);
+
+	$this->blog_data->update_data($where,$data,'blog');
+	redirect('Blog/fahrul');
+	}
+
+	function hapus($id){
+		$where = array('id' => $id);
+		$this->blog_data->hapus_data($where,'blog');
+		redirect('Blog/fahrul');
+	}
+
+	function aksi(){
+		$this->form_validation->set_rules('judul','judul','required');
+		$this->form_validation->set_rules('tanggal','tanggal','required');
+		$this->form_validation->set_rules('author','author','required');
+ 		$this->form_validation->set_rules('konten','konten','required');
+ 		$this->form_validation->set_rules('gambar','gambar','required');
+ 
+		if($this->form_validation->run() != false){
+			echo "Form validation oke";
+		}else{
+			$this->load->view('create');
 		}
 	}
 }

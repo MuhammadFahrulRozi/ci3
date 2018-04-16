@@ -48,37 +48,39 @@ body {
   <p>Ingat!!! Apapun Itu Harus Jujur</p>
   <br>
   <br>
-<?php echo validation_errors(); ?>
-<?php echo form_open('Blog/aksi'); ?>
-<!-- <form method="post" action="<?php //echo base_url(). 'Blog/tambah_aksi'; ?>" enctype ="multipart/form-data">
- -->  <table class="table table-hover">
+  <?php foreach($blog as $u){ ?>
+<form method="post" action="<?php echo base_url(). 'Blog/update'; ?>" enctype ="multipart/form-data">
+  <table class="table table-hover">
       <tr>
           <td width="100">Judul</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><input type="text" class="form-control" name="judul" required></td>
+            <td>&nbsp;&nbsp;</td>    
+            <td><input type="hidden" name="id" value="<?php echo $u->id ?>">
+            <input type="text" class="form-control" name="judul" value="<?php echo $u->judul ?>" required></td>
+            
         </tr>
         <tr>
           <td>Tanggal</td>
             <td>&nbsp;&nbsp;</td>
-            <td><input type="text" class="form-control" name="tanggal" required></td>
+            <td><input type="text" class="form-control" name="tanggal" value="<?php echo $u->tanggal ?>" required></td>
         </tr>
         <tr>
           <td>Author</td>
             <td>&nbsp;&nbsp;</td>
-            <td><input type="text" class="form-control" name="author" required></td>
+            <td><input type="text" class="form-control" name="author" value="<?php echo $u->author ?>" required></td>
         </tr>
         <tr>
           <td>Konten</td>
             <td>&nbsp;&nbsp;</td>
-            <td><textarea class="form-control" style="height: 200px;width: 500px;" name="konten"></textarea></td>
+            <td><input class="form-control" style="height: 200px;width: 500px;" name="konten" value="<?php echo $u->konten ?>"></input></td>
         </tr> 
           <td>Gambar</td>
             <td>&nbsp;&nbsp;</td>
-            <td><input type="file" name="userfile" size="20" /></td>
+            <td><input type="file" name="userfile" value="<?php echo $u->gambar ?>" size="20" ></td>
     </table>
-<input class="btn btn-info" type="submit" name="kirim" value="Create" /> &nbsp;<a href="user.php?content=kustomer" class="btn btn-warning">Cancel</a><br><br>
+<input class="btn btn-info" type="submit" name="kirim" value="Simpan" /> &nbsp;<a href="user.php?content=kustomer" class="btn btn-warning">Cancel</a><br><br>
 </form>
 </div>
 </div>
+<?php } ?>
 </body>
 </html>
