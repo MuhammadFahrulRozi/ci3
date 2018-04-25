@@ -59,6 +59,33 @@ class Blog extends CI_Controller {
 
 	function tambah_aksi(){
 		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('judul', 'Judul', 'required');
+		$this->form_validation->set_rules('konten', 'Konten','required|min_length[5]',
+        array(
+                'required'      => 'Harus diisi Ya Kak',
+                'min_length[5]' => "Minimal 5 karakter")
+			);
+		$this->form_validation->set_rules('tanggal', 'Tanggal',
+        array(
+                'required'      => 'Harus diisi Broh')
+			);
+        $this->form_validation->set_rules('author', 'Author',
+        array(
+                'required'      => 'Harus diisi Lur Dulur')
+			);
+
+
+
+		// $this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[blogs.post_title]',
+		// 	array(
+		// 		'required' 		=> 'Isi %s dong kakak, males amat.',
+		// 		'is_unique' 	=> 'Judul ' .$this->input->post('judul'). ' wes onok LURRRR.'
+		// 	));
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('create');
+		}else{
 		$config['upload_path']   = 'assets/images/Upload';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$this->load->library('upload', $config);
@@ -88,6 +115,7 @@ class Blog extends CI_Controller {
 		echo print_r($data);
 		$this->blog_data->input_data($data,'blog');
 		redirect('Blog');
+		}
 		}
 	}
 
@@ -127,18 +155,18 @@ class Blog extends CI_Controller {
 		redirect('Blog/fahrul');
 	}
 
-	function aksi(){
-		$this->form_validation->set_rules('judul','judul','required');
-		$this->form_validation->set_rules('tanggal','tanggal','required');
-		$this->form_validation->set_rules('author','author','required');
- 		$this->form_validation->set_rules('konten','konten','required');
- 		$this->form_validation->set_rules('gambar','gambar','required');
+	// function aksi(){
+	// 	$this->form_validation->set_rules('judul','judul','required');
+	// 	$this->form_validation->set_rules('tanggal','tanggal','required');
+	// 	$this->form_validation->set_rules('author','author','required');
+ // 		$this->form_validation->set_rules('konten','konten','required');
+ // 		$this->form_validation->set_rules('gambar','gambar','required');
  
-		if($this->form_validation->run() != false){
-			echo "Form validation oke";
-		}else{
-			$this->load->view('create');
-		}
-	}
+	// 	if($this->form_validation->run() != false){
+	// 		echo "Form validation oke";
+	// 	}else{
+	// 		$this->load->view('create');
+	// 	}
+	// }
 }
 ?>
