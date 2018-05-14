@@ -5,7 +5,7 @@
         parent::__construct();      
         $this->load->helper('url','form');
         $this->load->model('Category_model');
-        //$this->load->library('pagination');
+        $this->load->library('pagination');
     }
 
    //  public function index()
@@ -68,19 +68,19 @@
 
             $start_index = ( $this->uri->segment(3) ) ? $this->uri->segment(3) : 0;
 
-            //$total_records = $this->Category_model->get_total();
+            $total_records = $this->Category_model->get_total();
 
-            //if ($total_records > 0) {
+            if ($total_records > 0) {
 
                 $data['all_categories'] = $this->Category_model->get_all_categories($limit_per_page,$start_index);
 
-               // $config['base_url'] = base_url() . 'category/index';
-               // $config['total_rows'] = $total_records;
+                $config['base_url'] = base_url() . 'category/index';
+                $config['total_rows'] = $total_records;
                 $config['per_page'] = $limit_per_page;
 
-                //$this->pagination->initialize($config);
+                $this->pagination->initialize($config);
 
-                //$data['links'] = $this->pagination->create_links();
+                $data['links'] = $this->pagination->create_links();
                 // echo $data['links'];
                 // echo $limit_per_page;
                 // echo $start_index;
@@ -120,7 +120,7 @@ function hapus($id){
         $this->Category_model->hapus_data($where,'kategori');
         redirect('category');
     }
-//}
+}
 
 
 ?>

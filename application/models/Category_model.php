@@ -13,12 +13,12 @@
        return $this->db->insert('kategori', $data);
    }
 
-      public function get_all_categories()//$limit = FALSE, $offset = FALSE)
+      public function get_all_categories($limit = FALSE, $offset = FALSE)
    {
-      // if ($limit) {
-      //   $this->db->limit($limit, $offset);
-      // }
-      //  // Urutkan berdasar abjad
+       if ($limit) {
+         $this->db->limit($limit, $offset);
+       }
+      // Urutkan berdasar abjad
        $this->db->order_by('nama');
 
        $query = $this->db->get('kategori');
@@ -66,10 +66,10 @@
     return $data_select;
   }
 
-  // public function get_total()
-  // {
-  //   return $this->db->count_all("kategori");
-  // }
+   public function get_total()
+   {
+     return $this->db->count_all("kategori");
+   }
 
   }
 ?>

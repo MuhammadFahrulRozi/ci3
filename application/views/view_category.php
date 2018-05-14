@@ -65,9 +65,9 @@ body {
 </div>
 <?php } ?>
 <div class="container" style="margin-top: 200px;">
-<!-- <?php 
+<?php 
   echo $links;
-?> -->
+?>
 </div>
 
 

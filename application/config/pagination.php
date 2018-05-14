@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 defined("BASEPATH") OR exit('No direct script access allowed');
 
 $config['per_page'] = 10;
@@ -13,4 +13,4 @@ $config['num_tag_close'] = '</span></li>';
 $config['cur_tag_open'] = '<li class="page-item active"><span class="page-link">';
 $config['cur_tag_close'] = '<span class="sr-only">(current)</span></li>';
 
-?> -->
+?>
