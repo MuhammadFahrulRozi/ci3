@@ -43,21 +43,26 @@ class Blog extends CI_Controller {
 
 	public function fahrul3()
 	{
-		$this->load->view('create');
+		$data['dropdown'] = $this -> Category_model -> dropdown();
+		$this->load->view('create', $data);
 	}
 
 	function __construct(){
 		parent::__construct();
 		$this->load->model('blog_data');
+		$this->load->model('Category_model');
 		$this->load->helper('url');	
+		$this->load->helper('form');	
 		$this->load->library('form_validation');
 	}
 
 	function tambah(){
-		$this->load->view('create');
+		$data['dropdown'] = $this -> Category_model -> dropdown();
+		$this->load->view('create',$data);
 	}
 
 	function tambah_aksi(){
+		$data['dropdown'] = $this -> Category_model -> dropdown();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('judul', 'Judul', 'required');
@@ -84,7 +89,7 @@ class Blog extends CI_Controller {
 		// 	));
 
 		if ($this->form_validation->run() == FALSE) {
-			$this->load->view('create');
+			$this->load->view('create', $data);
 		}else{
 		$config['upload_path']   = 'assets/images/Upload';
 		$config['allowed_types'] = 'gif|jpg|png';
@@ -107,6 +112,7 @@ class Blog extends CI_Controller {
 		
 		$data = array(
 				'judul' => $this->input->post('judul'),
+				'id_kategori' => $this->input->post('kategori'),
 				'tanggal' => $this->input->post('tanggal'),
 				'author' => $this->input->post('author'),
 				'konten' => $this->input->post('konten'),
@@ -120,6 +126,7 @@ class Blog extends CI_Controller {
 	}
 
 	function edit($id){
+	$data['dropdown'] = $this -> Category_model -> dropdown();	
 	$where = array('id' => $id);
 	$data['blog'] = $this->blog_data->edit_data($where,'blog')->result();
 	$this->load->view('edit',$data);
@@ -154,6 +161,7 @@ class Blog extends CI_Controller {
 		$this->blog_data->hapus_data($where,'blog');
 		redirect('Blog/fahrul');
 	}
+
 
 	// function aksi(){
 	// 	$this->form_validation->set_rules('judul','judul','required');

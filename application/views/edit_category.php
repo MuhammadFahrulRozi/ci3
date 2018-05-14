@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
   <title>Create</title>
   <meta charset="utf-8">
@@ -38,7 +36,6 @@ body {
       <li class="active"><a href="<?php echo base_url('Welcome/tugas')?>">Home</a></li>
           <li><a href="<?php echo base_url('Welcome/tugas')?>">About</a></li>
           <li><a href="<?php echo base_url('Welcome/tugas')?>">Blog</a></li>
-          <li><a href="<?php echo base_url('Category')?>">Kategori</a></li>
         </ul>
   </div> 
   
@@ -50,53 +47,27 @@ body {
   <p>Ingat!!! Apapun Itu Harus Jujur</p>
   <br>
   <br>
-<?php echo validation_errors(); ?>
-<?php echo form_open_multipart('blog/tambah_aksi', array('class' => 'needs-validation', 'novalidate' => '') );
-?>
-<!-- <form method="post" action="<?php //echo base_url(). 'Blog/tambah_aksi'; ?>" enctype ="multipart/form-data">
- -->  
- <table class="table table-hover">
+ <?php foreach($data as $i){ ?>
+  <form action="<?php echo base_url(). 'Category/update'; ?>" method="post" enctype ="multipart/form-data">
+    <table style="margin:20px auto;">
       <tr>
-          <td width="100">Judul</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><input type="text" value="<?php echo set_value('judul')?>" class="form-control" name="judul">
-           <!--  <div class="invalid-feedback">Isi judul dulu DULUR</div>
-           --></td>
-        </tr>
-         <tr>
-          <td width="100">Kategori</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><?php echo form_dropdown('kategori', $dropdown, set_value('kategori'), 'class="form-control" required');?>
-           <!--  <div class="invalid-feedback">Isi judul dulu DULUR</div>
-           --></td>
-        </tr>
-        <tr>
-          <td>Tanggal</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><input type="text" value="<?php echo set_value('tanggal')?>" class="form-control" name="tanggal">
-          <!--   <div class="invalid-feedback">Isi tanggal dulu BOSSSKUUUUU</div>
-            --> </td> 
-        </tr>
-        <tr>
-          <td>Author</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><input type="text" value="<?php echo set_value('author')?>" class="form-control" 
-            name="author">
-           <!--  <div class="invalid-feedback">Isi authoor dulu BROOHHHH</div>
-            --> </td>
-        </tr>
-        <tr>
-          <td>Konten</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><textarea class="form-control" style="height: 200px;width: 500px;" name="konten"><?php echo set_value('konten')?></textarea></td>
-        </tr> 
-          <td>Gambar</td>
-            <td>&nbsp;&nbsp;</td>
-            <td><input type="file" value="<?php echo set_value('gambar')?>" name="userfile" size="20" /></td>
+        <td>Nama :</td><br>
+        <td><input type="hidden" name="id_kategori" value="<?php echo $i->id_kategori ?>">
+          <input type="text" name="nama" value="<?php echo $i->nama ?>">
+        </td>
+      </tr>
+      <tr>
+        <td>Deskripsi : </td>
+        <td><input type="text" name="deskripsi" style="width : 500px; height: 200px;" value="<?php echo $i->deskripsi ?>"></td>
+      </tr>
+    
+      <tr>
+        <td></td>
+        <td><button id="submitBtn" type="submit" class="btn btn-primary">Simpan</button></td>
+      </tr>
     </table>
-<!-- <button id="submitBtn" type="submit" class="btn btn-primary">Post Artikel</button> -->
-<input class="btn btn-info" id="submitBtn" type="submit" name="kirim" value="Create" /> 
-&nbsp;<a href="user.php?content=kustomer" class="btn btn-warning">Cancel</a><br><br>
+  </form> 
+  <?php } ?>
 </div>
 </div>
 

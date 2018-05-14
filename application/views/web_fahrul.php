@@ -54,10 +54,12 @@ rel='stylesheet' type='text/css'>
                         <li class="menuItem active"><a href="#wrapper">Home</a></li>
                         <li class="menuItem"><a href="#aboutus">About Me</a></li>
                         <li class="menuItem"><a href="#skillset">Blog</a></li>
-                        <li class="menuItem"><a href="<?php echo base_url('Blog/fahrul3')?>">Create</a></li>
+                        <li class="menuItem"><a href="<?php echo base_url('Blog/fahrul3')?>">Create</a>
+                        <li class="menuItem"><a href="<?php echo base_url('Category')?>">Kategori
+                        </a></li>
                       </ul>
                     </div>
-                </div>
+                    </div>
               </div>
             </div>
           </div>
