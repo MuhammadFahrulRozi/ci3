@@ -39,6 +39,8 @@ body {
           <li><a href="<?php echo base_url('Welcome/tugas')?>">About</a></li>
           <li><a href="<?php echo base_url('Welcome/tugas')?>">Blog</a></li>
           <li><a href="<?php echo base_url('Category')?>">Kategori</a></li>
+          <li class="active"><a href="<?php echo base_url('user/login')?>">Logout</a></li>
+        
         </ul>
   </div> 
   

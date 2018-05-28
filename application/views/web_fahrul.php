@@ -57,6 +57,8 @@ rel='stylesheet' type='text/css'>
                         <li class="menuItem"><a href="<?php echo base_url('Blog/fahrul3')?>">Create</a>
                         <li class="menuItem"><a href="<?php echo base_url('Category')?>">Kategori
                         </a></li>
+                        <li class="menuItem"><a href="<?php echo base_url('user/logout')?>">Logut
+                        </a></li>
                       </ul>
                     </div>
                     </div>
