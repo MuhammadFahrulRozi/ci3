@@ -73,6 +73,18 @@ body {
         <input type="text" class="form-control" name="password2" placeholder="Konfirmasi Password">
    </div>
 
+   <div class="form-group">
+   	<label for="">Pilih Jenis Member</label>
+   	<div class="form-check">
+   	<input class="form-check-input" type="radio" name="membership" id="membergratis" value="2" checked>
+   		<label class="form-check-label" for="membergratis">Free Member</label>
+   	</div>
+
+   	<div class="form-check">
+   		<input class="form-check-input" type="radio" name="membership" id='memberberbayar' value="3">
+   		<label class="form-check-label" for="memberberbayar">Paid Member</label>
+   	</div>
+   </div>
    <button type="submit" class="btn btn-primary btn-block">Daftar</button>
 <?php echo form_close(); ?>
 </div>
