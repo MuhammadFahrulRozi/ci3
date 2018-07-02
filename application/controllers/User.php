@@ -71,7 +71,7 @@ class User extends CI_Controller{
         // Set message
         $this->session->set_flashdata('user_loggedin', 'Selamat Datang'. $username);
 
-        redirect('Welcome/dashboard');
+        redirect('Welcome/tugas');
     } else {
         // Set message
         $this->session->set_flashdata('login_failed', 'Login is invalid');

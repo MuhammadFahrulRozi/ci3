@@ -54,10 +54,16 @@ rel='stylesheet' type='text/css'>
                         <li class="menuItem active"><a href="#wrapper">Home</a></li>
                         <li class="menuItem"><a href="#aboutus">About Me</a></li>
                         <li class="menuItem"><a href="#skillset">Blog</a></li>
+                        <?php
+                        if($this->session->userdata('level') == 1){
+                        ?>
                         <li class="menuItem"><a href="<?php echo base_url('Blog/fahrul3')?>">Create</a>
                         <li class="menuItem"><a href="<?php echo base_url('Category')?>">Kategori
+                        <?php
+                          }
+                        ?>
                         </a></li>
-                        <li class="menuItem"><a href="<?php echo base_url('user/logout')?>">Logut
+                        <li class="menuItem"><a href="<?php echo base_url('user/logout')?>">Login
                         </a></li>
                       </ul>
                     </div>
@@ -102,13 +108,16 @@ rel='stylesheet' type='text/css'>
       <div class="row">
        <div class="col-md-12">
       	<div class="heading">
+          <br>
+          <br>
+          <br>
         <h2>About me</h2>
         <h3>A small introduction about my self</h3>        
       </div>
       </div> 
        </div> 
       <div class="row">
-      <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right media"><img src="<?php echo base_url('assets/images/jhon-img.jpg')?>" alt=""></div>
+      <!-- <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right media"><img src="<?php echo base_url('assets/images/jhon-img.jpg')?>" alt=""></div> -->
       	<div class=" col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left media">
         	<h5>Muhammad Fahrul Rozi</h5>
             <h4>Travelling &amp; Hicking,pendakian itu proses puncak itu BONUS</h4>

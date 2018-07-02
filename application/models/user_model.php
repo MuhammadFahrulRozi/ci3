@@ -33,13 +33,13 @@ class User_model extends CI_Model{
    }
     public function get_user_level($user_id) {
       //Dapatkan data level
-      $this->db->select('fk_level_id');
+      $this->db->select('level');
       $this->db->where('user_id', $user_id);
 
       $result = $this->db->get('users');
 
       if ($result->num_rows() == 1) {
-        return $result->row(0)->fk_level_id;
+        return $result->row(0)->level;
       } else {
         return false;
       }
